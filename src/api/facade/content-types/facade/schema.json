@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "facades",
+  "info": {
+    "singularName": "facade",
+    "pluralName": "facades",
+    "displayName": "facade",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "ImgProduct": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imgList": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
