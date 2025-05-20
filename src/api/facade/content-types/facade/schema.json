@@ -23,14 +23,30 @@
       ]
     },
     "imgList": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "width": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "dimensions": {
+      "type": "string"
+    },
+    "thickness": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
     }
   }
 }

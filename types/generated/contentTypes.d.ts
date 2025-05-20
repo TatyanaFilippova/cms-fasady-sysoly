@@ -385,9 +385,12 @@ export interface ApiFacadeFacade extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    color: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    dimensions: Schema.Attribute.String;
+    height: Schema.Attribute.String;
     imgList: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -400,10 +403,12 @@ export interface ApiFacadeFacade extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    thickness: Schema.Attribute.String;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    width: Schema.Attribute.String;
   };
 }
 
