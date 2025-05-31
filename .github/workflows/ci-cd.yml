@@ -20,20 +20,20 @@ jobs:
 
       - name: Create Env file
         run: |
-          echo "HOST=0.0.0.0" >> .env
-          echo "PORT=1337" >> .env
-          echo "APP_KEYS="toBeModified1,toBeModified2"" >> .env
-          echo "API_TOKEN_SALT=tobemodified" >> .env
-          echo "ADMIN_JWT_SECRET=tobemodified" >> .env
-          echo "TRANSFER_TOKEN_SALT=tobemodified" >> .env
-          echo "JWT_SECRET=tobemodified" >> .env
-          echo "ENCRYPTION_KEY=tobemodified" >> .env
+          echo "HOST=0.0.0.0" >> env
+          echo "PORT=1337" >> env
+          echo "APP_KEYS="toBeModified1,toBeModified2"" >> env
+          echo "API_TOKEN_SALT=tobemodified" >> env
+          echo "ADMIN_JWT_SECRET=tobemodified" >> env
+          echo "TRANSFER_TOKEN_SALT=tobemodified" >> env
+          echo "JWT_SECRET=tobemodified" >> env
+          echo "ENCRYPTION_KEY=tobemodified" >> env
           
-          echo "DATABASE_CLIENT=mysql" >> .env
-          echo "DATABASE_HOST=${{ secrets.DATABASE_HOST }}" >> .env
-          echo "DATABASE_NAME=${{ secrets.DATABASE_NAME }}" >> .env
-          echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> .env
-          echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> .env
+          echo "DATABASE_CLIENT=mysql" >> env
+          echo "DATABASE_HOST=${{ secrets.DATABASE_HOST }}" >> env
+          echo "DATABASE_NAME=${{ secrets.DATABASE_NAME }}" >> env
+          echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> env
+          echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> env
 
       - name: Install dependencies
         run: npm install
@@ -47,8 +47,6 @@ jobs:
           cp package.json artifacts/
           cp "$(pwd)/.env" artifacts/
           cp -r dist/ artifacts/
-          echo "Содержимое папки artifacts:"
-          ls -la artifacts/  # Показывает список файлов
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -85,8 +83,6 @@ jobs:
       - name: Copy files to server via SSH
 
         run: |
-          echo "Содержимое папки artifacts после загрузки:"
-          ls -la artifacts/  # Показывает список файлов
           sshpass -p "$SERVER_PASSWORD" rsync -avz --include=".env" ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
       - name: Touch restart file
