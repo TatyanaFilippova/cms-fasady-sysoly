@@ -27,6 +27,7 @@ jobs:
       - name: Archive build artifacts
         run: |
           mkdir -p artifacts
+          cp package.json artifacts/ 
           cp -r dist/* artifacts/
 
       - name: Upload build artifacts
