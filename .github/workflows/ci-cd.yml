@@ -72,9 +72,13 @@ jobs:
       - name: Install Dependencies on server
         env:
           SSHPASS: ${{ secrets.PASSWORD }}
-        run: |          
+        run: |
+          echo "Содержимое папки:"
           sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
-            "/home/k/kuzovok11/.local/bin/npm install""
+            "ls -la ${{ secrets.SERVER_PATH }}"
+          
+          sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
+            "/home/k/kuzovok11/.local/bin/npm install"
 
       - name: Touch restart file
         env:
