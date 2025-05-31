@@ -45,7 +45,7 @@ jobs:
         run: |
           mkdir -p artifacts
           cp package.json artifacts/
-          cp ".env" artifacts/
+          cp "$(pwd)/.env" artifacts/
           cp -r dist/ artifacts/
           echo "Содержимое папки artifacts:"
           ls -la artifacts/  # Показывает список файлов
