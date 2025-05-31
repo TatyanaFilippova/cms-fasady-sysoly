@@ -20,6 +20,8 @@ jobs:
 
       - name: Create Env file
         run: |
+          cat <<EOF > .env
+          
           echo "HOST=0.0.0.0" >> .env
           echo "PORT=1337" >> .env
           echo "APP_KEYS="toBeModified1,toBeModified2"" >> .env
