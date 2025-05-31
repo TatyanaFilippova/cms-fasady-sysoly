@@ -70,12 +70,16 @@ jobs:
           sshpass -p "$SERVER_PASSWORD" rsync -avz ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
       - name: Install Dependencies on server
+        env:
+          SSHPASS: ${{ secrets.SERVER_PASSWORD }}
         run: |
           sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
             "cd ${{ secrets.SERVER_PATH }} && \
             sudo npm install --unsafe-perm"
 
       - name: Touch restart file
+        env:
+          SSHPASS: ${{ secrets.SERVER_PASSWORD }}
         run: |
           sshpass -e ssh -o StrictHostKeyChecking=no \
               ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
