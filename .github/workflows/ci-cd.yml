@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "HOST=0.0.0.0" >> .env
           echo "PORT=1337" >> .env
-          echo "APP_KEYS=toBeModified1,toBeModified2" >> .env
+          echo "APP_KEYS="toBeModified1,toBeModified2"" >> .env
           echo "API_TOKEN_SALT=tobemodified" >> .env
           echo "ADMIN_JWT_SECRET=tobemodified" >> .env
           echo "TRANSFER_TOKEN_SALT=tobemodified" >> .env
