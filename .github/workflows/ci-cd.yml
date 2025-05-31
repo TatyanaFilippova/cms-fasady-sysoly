@@ -10,6 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Test
+        env:
+          SSHPASS: ${{ secrets.PASSWORD }}
+        run: |
+          echo "Содержимое папки:"
+          sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
+            "ls -la /"
+
+          sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
+            "cd ${{ secrets.SERVER_PATH }}" \
+            "/home/k/kuzovok11/.local/bin/npm install"
+
       - name: Checkout code
         uses: actions/checkout@v2
 
