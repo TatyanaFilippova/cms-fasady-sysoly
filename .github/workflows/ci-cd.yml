@@ -71,7 +71,7 @@ jobs:
 
       - name: Install Dependencies on server
         env:
-          SSHPASS: ${{ secrets.SERVER_PASSWORD }}
+          SSHPASS: ${{ secrets.PASSWORD }}
         run: |
           sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
             "cd ${{ secrets.SERVER_PATH }} && \
@@ -79,7 +79,7 @@ jobs:
 
       - name: Touch restart file
         env:
-          SSHPASS: ${{ secrets.SERVER_PASSWORD }}
+          SSHPASS: ${{ secrets.PASSWORD }}
         run: |
           sshpass -e ssh -o StrictHostKeyChecking=no \
               ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
