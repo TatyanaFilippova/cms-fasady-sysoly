@@ -83,6 +83,7 @@ jobs:
       - name: Copy files to server via SSH
 
         run: |
+          mv artifacts/env artifacts/.env
           sshpass -p "$SERVER_PASSWORD" rsync -avz --include=".env" ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
       - name: Touch restart file
