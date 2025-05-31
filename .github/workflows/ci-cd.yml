@@ -35,9 +35,6 @@ jobs:
           echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> .env
           echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> .env
 
-          echo "Файлы:"
-          ls -la
-
       - name: Install dependencies
         run: npm install
 
@@ -86,6 +83,8 @@ jobs:
       - name: Copy files to server via SSH
 
         run: |
+          echo "Содержимое папки artifacts после загрузки:"
+          ls -la artifacts/  # Показывает список файлов
           sshpass -p "$SERVER_PASSWORD" rsync -avz ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
       - name: Touch restart file
