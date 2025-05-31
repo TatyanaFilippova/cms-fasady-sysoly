@@ -68,6 +68,9 @@ jobs:
           DATABASE_PASSWORD: 8!rcs!MvZa82
         run: |
           sshpass -p "$SERVER_PASSWORD" rsync -avz ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
+          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no \
+              ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
+              "cd ${{ secrets.SERVER_PATH }} && npm install --production"
 
       - name: Clean up after deployment
         run: echo "Deployment completed successfully!"  # Сообщение о завершении развертывания
