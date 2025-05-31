@@ -87,7 +87,7 @@ jobs:
         run: |
           echo "Содержимое папки artifacts после загрузки:"
           ls -la artifacts/  # Показывает список файлов
-          sshpass -p "$SERVER_PASSWORD" rsync -avz ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
+          sshpass -p "$SERVER_PASSWORD" rsync -avz --include=".env" ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
       - name: Touch restart file
         env:
