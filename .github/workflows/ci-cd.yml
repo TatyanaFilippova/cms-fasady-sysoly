@@ -73,11 +73,12 @@ jobs:
         env:
           SSHPASS: ${{ secrets.PASSWORD }}
         run: |
-          echo ls
+          echo "Содержимое папки:"
+            sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
+            "ls -la ${{ secrets.SERVER_PATH }}"
           
           sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
-            "cd ${{ secrets.SERVER_PATH }} && \
-            "/.local/bin/npm install""
+            "/home/k/kuzovok11//.local/bin/npm install""
 
       - name: Touch restart file
         env:
