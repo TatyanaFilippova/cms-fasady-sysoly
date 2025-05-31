@@ -69,13 +69,6 @@ jobs:
         run: |
           sshpass -p "$SERVER_PASSWORD" rsync -avz ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
-      - name: Install Dependencies on server
-        env:
-          SSHPASS: ${{ secrets.PASSWORD }}
-        run: |          
-          sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
-            "chmod +x /home/k/kuzovok11/.local/bin/npm && cd ${{ secrets.SERVER_PATH }} && /home/k/kuzovok11/.local/bin/npm install"
-
       - name: Touch restart file
         env:
           SSHPASS: ${{ secrets.PASSWORD }}
