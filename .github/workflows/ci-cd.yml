@@ -40,6 +40,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: build  # Зависимость от job'а сборки
 
+    env:
+      DATABASE_CLIENT: mysql
+      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+      DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+      DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+
+      SERVER_USER: ${{ secrets.SERVER_USER }}       # Имя пользователя для SSH
+      SERVER_IP: ${{ secrets.SERVER_IP }}           # IP-адрес сервера
+      SERVER_PATH: ${{ secrets.SERVER_PATH }}       # Путь на сервере, куда будут копироваться файлы
+      SERVER_PASSWORD: ${{ secrets.PASSWORD }} # Пароль для SSH
+
     steps:
       - name: Download build artifacts
         uses: actions/download-artifact@v4
@@ -56,16 +68,7 @@ jobs:
           ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
       - name: Copy files to server via SSH
-        env:
-          SERVER_USER: ${{ secrets.SERVER_USER }}       # Имя пользователя для SSH
-          SERVER_IP: ${{ secrets.SERVER_IP }}           # IP-адрес сервера
-          SERVER_PATH: ${{ secrets.SERVER_PATH }}       # Путь на сервере, куда будут копироваться файлы
-          SERVER_PASSWORD: ${{ secrets.PASSWORD }} # Пароль для SSH
-          DATABASE_CLIENT: mysql
-          DATABASE_HOST: kuzovok11.beget.tech
-          DATABASE_NAME: kuzovok11_fasady
-          DATABASE_USERNAME: kuzovok11_fasady
-          DATABASE_PASSWORD: 8!rcs!MvZa82
+
         run: |
           sshpass -p "$SERVER_PASSWORD" rsync -avz ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
