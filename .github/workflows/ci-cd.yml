@@ -67,13 +67,7 @@ jobs:
           DATABASE_USERNAME: kuzovok11_fasady
           DATABASE_PASSWORD: 8!rcs!MvZa82
         run: |
-          sshpass -p "$SERVER_PASSWORD" \
-          rsync -avz --delete \
-            --exclude='public' \
-            --exclude='tmp' \
-            --exclude='.env' \
-            --exclude='server.js' \
-          ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
+          sshpass -p "$SERVER_PASSWORD" rsync -avz ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
         # Устанавливаем зависимости на сервере
           sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
