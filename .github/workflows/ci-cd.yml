@@ -20,7 +20,6 @@ jobs:
 
       - name: Create Env file
         run: |
-        # встроенные в Strapi env
           echo "HOST=0.0.0.0" >> .env
           echo "PORT=1337" >> .env
           echo "APP_KEYS=toBeModified1,toBeModified2" >> .env
@@ -30,7 +29,6 @@ jobs:
           echo "JWT_SECRET=tobemodified" >> .env
           echo "ENCRYPTION_KEY=tobemodified" >> .env
           
-        # подключение к БД
           echo "DATABASE_CLIENT=mysql" >> .env
           echo "DATABASE_HOST=${{ secrets.DATABASE_HOST }}" >> .env
           echo "DATABASE_NAME=${{ secrets.DATABASE_NAME }}" >> .env
