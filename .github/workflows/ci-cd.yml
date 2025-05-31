@@ -75,9 +75,10 @@ jobs:
         run: |
           echo "Содержимое папки:"
           sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
-            "ls -la ${{ secrets.SERVER_PATH }}"
+            "ls -la /"
           
           sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
+            "cd ${{ secrets.SERVER_PATH }}" \
             "/home/k/kuzovok11/.local/bin/npm install"
 
       - name: Touch restart file
