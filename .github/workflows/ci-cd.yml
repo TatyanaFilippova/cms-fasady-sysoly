@@ -69,10 +69,10 @@ jobs:
         run: |
           sshpass -p "$SERVER_PASSWORD" \
           rsync -avz --delete \
-          --exclude='public'
-          --exclude='tmp'
-          --exclude='.env'
-          --exclude='server.js'
+            --exclude='public' \
+            --exclude='tmp' \
+            --exclude='.env' \
+            --exclude='server.js' \
           ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
       - name: Install Dependencies
