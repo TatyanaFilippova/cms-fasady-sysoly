@@ -28,7 +28,6 @@ jobs:
         run: |
           mkdir -p artifacts
           cp package.json artifacts/
-          cp -r node_modules/* artifacts/
           cp -r dist/* artifacts/
 
       - name: Upload build artifacts
@@ -69,6 +68,12 @@ jobs:
           DATABASE_PASSWORD: 8!rcs!MvZa82
         run: |
           sshpass -p "$SERVER_PASSWORD" rsync -avz ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
+
+      - name: Install Dependencies on server
+        run:
+          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no \
+          ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
+          "cd ${{ secrets.SERVER_PATH }} && npm install --production"
 
       - name: Touch restart file
         env:
