@@ -41,16 +41,28 @@ jobs:
     needs: build  # Зависимость от job'а сборки
 
     env:
+    # подключение к БД
       DATABASE_CLIENT: mysql
       DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
       DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
       DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
 
+    # для SSH доступа
       SERVER_USER: ${{ secrets.SERVER_USER }}       # Имя пользователя для SSH
       SERVER_IP: ${{ secrets.SERVER_IP }}           # IP-адрес сервера
       SERVER_PATH: ${{ secrets.SERVER_PATH }}       # Путь на сервере, куда будут копироваться файлы
       SERVER_PASSWORD: ${{ secrets.PASSWORD }} # Пароль для SSH
+
+    # встроенные в Strapi env
+      HOST: 0.0.0.0
+      PORT: 1337
+      APP_KEYS: "toBeModified1,toBeModified2"
+      API_TOKEN_SALT: tobemodified
+      ADMIN_JWT_SECRET: tobemodified
+      TRANSFER_TOKEN_SALT: tobemodified
+      JWT_SECRET: tobemodified
+      ENCRYPTION_KEY: tobemodified
 
     steps:
       - name: Download build artifacts
