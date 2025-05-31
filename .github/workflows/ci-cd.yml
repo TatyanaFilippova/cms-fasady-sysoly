@@ -67,12 +67,19 @@ jobs:
           DATABASE_USERNAME: kuzovok11_fasady
           DATABASE_PASSWORD: 8!rcs!MvZa82
         run: |
-          sshpass -p "$SERVER_PASSWORD" rsync -avz \
-            --include='build/' \
-            --include='config/' \
-            --include='src/' \
-            --include='package.json' \
-            --exclude='*' \
-            ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH/
+          sshpass -p "$SERVER_PASSWORD" \
+          rsync -avz --delete \
+          --exclude='public'
+          --exclude='tmp'
+          --exclude='.env'
+          --exclude='server.js'
+          ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Restart server
+        run: touch tmp/restart.txt
+
       - name: Clean up after deployment
         run: echo "Deployment completed successfully!"  # Сообщение о завершении развертывания
