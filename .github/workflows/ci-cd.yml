@@ -68,7 +68,9 @@ jobs:
           DATABASE_PASSWORD: 8!rcs!MvZa82
         run: |
           sshpass -p "$SERVER_PASSWORD" rsync -avz \
-            --include='dist/' \
+            --include='build/' \
+            --include='config/' \
+            --include='src/' \
             --include='package.json' \
             --exclude='*' \
             ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH/
