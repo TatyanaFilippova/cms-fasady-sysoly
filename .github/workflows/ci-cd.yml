@@ -76,7 +76,6 @@ jobs:
           sshpass -e ssh -o StrictHostKeyChecking=no \
               ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
               "touch ${{ secrets.SERVER_PATH }}/tmp/restart.txt"
-          
 
       - name: Clean up after deployment
         run: echo "Deployment completed successfully!"  # Сообщение о завершении развертывания
