@@ -75,7 +75,7 @@ jobs:
         run: |
           sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
             "cd ${{ secrets.SERVER_PATH }} && \
-            sudo npm install --unsafe-perm"
+            npm install --unsafe-perm"
 
       - name: Touch restart file
         env:
