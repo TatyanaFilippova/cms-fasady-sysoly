@@ -69,13 +69,5 @@ jobs:
         run: |
           sshpass -p "$SERVER_PASSWORD" rsync -avz ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
-        # Устанавливаем зависимости на сервере
-          sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
-            "cd ${{ secrets.SERVER_PATH }} && npm install --production"
-
-          # Перезапускаем приложение (пример для PM2)
-          sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
-            "cd ${{ secrets.SERVER_PATH }} && touch tmp/restart.txt"
-
       - name: Clean up after deployment
         run: echo "Deployment completed successfully!"  # Сообщение о завершении развертывания
