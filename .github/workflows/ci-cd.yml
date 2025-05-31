@@ -67,7 +67,10 @@ jobs:
           DATABASE_USERNAME: kuzovok11_fasady
           DATABASE_PASSWORD: 8!rcs!MvZa82
         run: |
-          sshpass -p "$SERVER_PASSWORD" rsync -avz --delete ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
-
+          sshpass -p "$SERVER_PASSWORD" rsync -avz \
+            --include='dist/' \
+            --include='package.json' \
+            --exclude='*' \
+            ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH/
       - name: Clean up after deployment
         run: echo "Deployment completed successfully!"  # Сообщение о завершении развертывания
