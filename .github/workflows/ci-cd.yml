@@ -20,8 +20,6 @@ jobs:
 
       - name: Create Env file
         run: |
-          cat <<EOF > .env
-          
           echo "HOST=0.0.0.0" >> .env
           echo "PORT=1337" >> .env
           echo "APP_KEYS="toBeModified1,toBeModified2"" >> .env
@@ -36,6 +34,8 @@ jobs:
           echo "DATABASE_NAME=${{ secrets.DATABASE_NAME }}" >> .env
           echo "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" >> .env
           echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> .env
+          
+          cat .env | grep -v PASSWORD  # Не выводим секреты в логи
 
       - name: Install dependencies
         run: npm install
