@@ -61,6 +61,11 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}           # IP-адрес сервера
           SERVER_PATH: ${{ secrets.SERVER_PATH }}       # Путь на сервере, куда будут копироваться файлы
           SERVER_PASSWORD: ${{ secrets.PASSWORD }} # Пароль для SSH
+          DATABASE_CLIENT: mysql
+          DATABASE_HOST: kuzovok11.beget.tech
+          DATABASE_NAME: kuzovok11_fasady
+          DATABASE_USERNAME: kuzovok11_fasady
+          DATABASE_PASSWORD: 8!rcs!MvZa82
         run: |
           sshpass -p "$SERVER_PASSWORD" rsync -avz --delete ./artifacts/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
 
