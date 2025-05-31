@@ -45,7 +45,7 @@ jobs:
         run: |
           mkdir -p artifacts
           cp package.json artifacts/
-          cp "$(pwd)/.env" artifacts/
+          cp env artifacts/
           cp -r dist/ artifacts/
 
       - name: Upload build artifacts
