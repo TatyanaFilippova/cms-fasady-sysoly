@@ -73,17 +73,7 @@ jobs:
         run: |
           sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
             "cd ${{ secrets.SERVER_PATH }} && \
-            rm -rf node_modules/ package-lock.json"
-          
-          sshpass -e ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
-            "cd ${{ secrets.SERVER_PATH }} && \
-            npm config set prefix ~/.npm-global && \
-            export PATH=~/.npm-global/bin:$PATH && \
-            npm install --production"
-          
-          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no \
-          ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
-          "cd ${{ secrets.SERVER_PATH }} && npm install --production"
+            sudo npm install --unsafe-perm"
 
       - name: Touch restart file
         run: |
