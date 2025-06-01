@@ -88,7 +88,7 @@ jobs:
 
       - name: Touch restart file
         env:
-          SSHPASS: $SERVER_PASSWORD
+          SSHPASS: ${{ secrets.PASSWORD }}
         run: |
           sshpass -e ssh -o StrictHostKeyChecking=no \
               $SERVER_USER@$SERVER_IP \
