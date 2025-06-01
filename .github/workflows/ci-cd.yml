@@ -78,7 +78,7 @@ jobs:
       - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
 
       - name: Copy files to server via SSH
 
@@ -88,11 +88,11 @@ jobs:
 
       - name: Touch restart file
         env:
-          SSHPASS: ${{ secrets.PASSWORD }}
+          SSHPASS: $SERVER_PASSWORD
         run: |
           sshpass -e ssh -o StrictHostKeyChecking=no \
-              ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
-              "touch ${{ secrets.SERVER_PATH }}/tmp/restart.txt"
+              $SERVER_USER@$SERVER_IP \
+              "touch $SERVER_PATH/tmp/restart.txt"
 
       - name: Clean up after deployment
         run: echo "Deployment completed successfully!"  # Сообщение о завершении развертывания
