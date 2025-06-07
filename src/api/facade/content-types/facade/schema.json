@@ -47,6 +47,23 @@
     },
     "color": {
       "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "milling",
+        "handle"
+      ]
+    },
+    "sort": {
+      "type": "integer"
+    },
+    "summery": {
+      "type": "text"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
     }
   }
 }
