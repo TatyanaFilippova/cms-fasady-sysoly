@@ -58,7 +58,7 @@
     "sort": {
       "type": "integer"
     },
-    "summery": {
+    "summary": {
       "type": "text"
     },
     "slug": {

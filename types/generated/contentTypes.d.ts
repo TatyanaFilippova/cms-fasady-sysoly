@@ -405,7 +405,7 @@ export interface ApiFacadeFacade extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
     sort: Schema.Attribute.Integer;
-    summery: Schema.Attribute.Text;
+    summary: Schema.Attribute.Text;
     thickness: Schema.Attribute.String;
     title: Schema.Attribute.String;
     type: Schema.Attribute.Enumeration<['milling', 'handle']>;
